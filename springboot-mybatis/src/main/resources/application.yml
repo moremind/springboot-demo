@@ -1,0 +1,23 @@
+spring:
+  # datasource configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/siccdb?useSSL=false&serverTimezone=UTC
+    username: root
+    password: admin@123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 1000
+      max-lifetime: 2000
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariDataCP
+      connection-timeout: 30000
+#      jdbc-url: jdbc:mysql://localhost:3306/siccdb?useSSL=false&serverTimezone=UTC
+#      username: root
+#      password: admin@123456
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  check-config-location: true
+  config-location: classpath:mybatis-config.xml
+

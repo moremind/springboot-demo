@@ -32,7 +32,7 @@ public class RedisConfiguration {
     public RedisTemplate<String, Serializable> redisTemplate(
             RedisConnectionFactory redisConnectionFactory) {
 
-        RedisTemplate<String, Serializable> template = new RedisTemplate<String,Serializable>();
+        RedisTemplate<String, Serializable> template = new RedisTemplate<String, Serializable>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());// Hash key序列化

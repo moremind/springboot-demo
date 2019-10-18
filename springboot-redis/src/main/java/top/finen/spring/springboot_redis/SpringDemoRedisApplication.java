@@ -1,4 +1,4 @@
-package top.finen.springdemoredis.springdemoredis;
+package top.finen.spring.springboot_redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

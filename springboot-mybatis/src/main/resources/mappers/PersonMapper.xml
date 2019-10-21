@@ -4,4 +4,38 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.finen.spring.springboot_mybatis.mapper.PersonMapper">
 
+    <!--Boolean addPerson(Person person);-->
+    <insert id="addPerson" parameterType="top.finen.spring.springboot_mybatis.bean.Person">
+        insert into person(card_number, name, age)
+        values (#{cardNumber, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER})
+    </insert>
+
+    <!--Person getOnePerson(String idCardNumber);-->
+    <select id="getOnePerson" resultType="top.finen.spring.springboot_mybatis.bean.Person">
+        select *
+        from person
+        where card_number = #{idCardNumber, jdbcType=VARCHAR}
+    </select>
+    
+    <!--String getPersonName(String idCardNumber);-->
+    <select id="getPersonName" resultType="java.lang.String">
+        select name
+        from person
+        where card_number = #{idCardNumber, jdbcType=VARCHAR}
+    </select>
+
+    <!--Boolean updatePersonName(String idCardNumber, String name);-->
+    <update id="updatePersonName">
+        update person
+        set name = #{name, jdbcType=VARCHAR}
+        where card_number = #{idCardNumber, jdbcType=VARCHAR}
+    </update>
+
+    <!--Boolean deletePerson(String idCardNumber);-->
+    <delete id="deletePerson">
+        delete
+        from person
+        where card_number = #{idCardNumber, jdbcType=VARCHAR}
+    </delete>
+
 </mapper>

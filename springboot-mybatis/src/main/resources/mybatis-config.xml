@@ -19,7 +19,11 @@
     </settings>
 
     <mappers>
-        <package name="top.finen.spring.springboot_mybatis.mapper"/>
+        <!--xml文件配置方式-->
+        <mapper resource="mappers/PersonMapper.xml"/>
+
+        <!--将xml与java类放在同一个mapper目录下的配置方式-->
+        <!--<package name="top.finen.spring.springboot_mybatis.mapper"/>-->
     </mappers>
 
 

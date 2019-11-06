@@ -1,0 +1,53 @@
+server:
+  port: 8090
+  tomcat:
+    basedir: ./
+    accept-count: 200
+    max-connections: 10000
+    max-threads: 200
+    uri-encoding: UTF-8
+    max-http-post-size: 2MB
+    min-spare-threads: 10
+    mbeanregistry:
+      enabled: false
+    accesslog:
+      enabled: true
+      buffered: true
+      check-exists: true
+      directory: ./logs
+      encoding: UTF-8
+      max-days: 3
+      prefix: access_log
+      file-date-format: .yyyy-MM-dd
+      pattern: common
+      suffix: .log
+      rotate: true
+      rename-on-rotate: false
+      request-attributes-enabled: false
+
+# spring configuration
+spring:
+  # dataSource配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/video?useSSL=false&serverTimezone=UTC
+    username: root
+    password: admin@123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 100
+      max-lifetime: 1800000
+      minimum-idle: 5
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: HikariDataCP
+      connection-timeout: 30000
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml
+
+logging:
+  config: classpath:logback.xml
+  level:
+    top.finen.spring.springboot_init.dao: info

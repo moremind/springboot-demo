@@ -3,7 +3,7 @@ package top.finen.spring.springboot_mybatis.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.finen.spring.springboot_mybatis.bean.Person;
+import top.finen.spring.springboot_mybatis.entity.Person;
 import top.finen.spring.springboot_mybatis.mapper.PersonMapper;
 import top.finen.spring.springboot_mybatis.service.PersonService;
 

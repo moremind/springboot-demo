@@ -2,7 +2,7 @@ package top.finen.spring.springboot_mybatis.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import top.finen.spring.springboot_mybatis.bean.Person;
+import top.finen.spring.springboot_mybatis.entity.Person;
 
 @Mapper
 @Component
@@ -45,8 +45,6 @@ public interface PersonMapper {
      *         false: fail
      */
     Boolean deletePerson(String idCardNumber);
-
-
 
 
 }

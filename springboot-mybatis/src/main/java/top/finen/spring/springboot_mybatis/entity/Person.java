@@ -1,4 +1,4 @@
-package top.finen.spring.springboot_mybatis.bean;
+package top.finen.spring.springboot_mybatis.entity;
 
 public class Person {
     private String name;

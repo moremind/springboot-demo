@@ -6,7 +6,7 @@
     <!--<properties></properties>-->
     <!--别名配置-->
     <!--<typeAliases>-->
-        <!--<package name="top.finen.spring.springboot_mybatis.bean"/>-->
+        <!--<package name="top.finen.spring.springboot_mybatis.entity"/>-->
     <!--</typeAliases>-->
 
 

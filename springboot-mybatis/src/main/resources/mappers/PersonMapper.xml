@@ -5,13 +5,13 @@
 <mapper namespace="top.finen.spring.springboot_mybatis.mapper.PersonMapper">
 
     <!--Boolean addPerson(Person person);-->
-    <insert id="addPerson" parameterType="top.finen.spring.springboot_mybatis.bean.Person">
+    <insert id="addPerson" parameterType="top.finen.spring.springboot_mybatis.entity.Person">
         insert into person(card_number, name, age)
         values (#{cardNumber, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER})
     </insert>
 
     <!--Person getOnePerson(String idCardNumber);-->
-    <select id="getOnePerson" resultType="top.finen.spring.springboot_mybatis.bean.Person">
+    <select id="getOnePerson" resultType="top.finen.spring.springboot_mybatis.entity.Person">
         select *
         from person
         where card_number = #{idCardNumber, jdbcType=VARCHAR}

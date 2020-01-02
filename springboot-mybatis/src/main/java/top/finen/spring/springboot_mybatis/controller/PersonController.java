@@ -2,7 +2,7 @@ package top.finen.spring.springboot_mybatis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.finen.spring.springboot_mybatis.bean.Person;
+import top.finen.spring.springboot_mybatis.entity.Person;
 import top.finen.spring.springboot_mybatis.service.impl.PersonServiceImpl;
 
 @RestController

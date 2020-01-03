@@ -1,13 +1,13 @@
-package top.finen.spring.springboot_redis;
+package com.javanorth.spring.springboot_redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringDemoRedisApplication {
+public class SpringbootRedisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringDemoRedisApplication.class, args);
+        SpringApplication.run(SpringbootRedisApplication.class, args);
     }
 
 }

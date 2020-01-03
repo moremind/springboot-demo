@@ -1,9 +1,7 @@
-package top.finen.spring.springboot_redis.utils;
-
+package com.javanorth.spring.springboot_redis.uitl;
 
 import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -69,5 +67,3 @@ public class RedisUtils {
     //****************************zSet****************************//
 
 }
-
-

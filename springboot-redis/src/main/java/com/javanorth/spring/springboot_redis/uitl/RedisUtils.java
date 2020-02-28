@@ -2,9 +2,11 @@ package com.javanorth.spring.springboot_redis.uitl;
 
 import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -54,6 +56,87 @@ public class RedisUtils {
      */
     public Boolean hasKey(@NotNull String key) {
         return redisTemplate.hasKey(key);
+    }
+
+    /**
+     * 移除key的过期时间
+     * @param key key值
+     * @return true or false
+     */
+    public Boolean persist(String key) {
+        return redisTemplate.persist(key);
+    }
+
+    /**
+     * 将当前数据库的 key 移动到给定的数据库 db 当中
+     * @param key key值
+     * @param dbIndex 数据库索引
+     * @return true or false
+     */
+    public Boolean move(String key, int dbIndex) {
+        return redisTemplate.move(key, dbIndex);
+    }
+
+    /**
+     * 获取随机的key值
+     * @return 随机获得的key值
+     */
+    public String randomKey() {
+        return redisTemplate.randomKey();
+    }
+
+    /**
+     * 删除key
+     * @param key key值
+     */
+    public void delete(String key) {
+        redisTemplate.delete(key);
+    }
+
+    /**
+     * 批量删除key值
+     * @param keys key的集合
+     */
+    public void deleteKeys(Collection<String> keys) {
+        redisTemplate.delete(keys);
+    }
+
+    /**
+     * 修改 key 的名称
+     *
+     * @param oldKey
+     * @param newKey
+     */
+    public void rename(String oldKey, String newKey) {
+        redisTemplate.rename(oldKey, newKey);
+    }
+
+    /**
+     * 仅当 newKey 不存在时，将 oldKey 改名为 newKey
+     * @param oldKey 旧的key值
+     * @param newKey 新的key值
+     * @return true or false
+     */
+    public Boolean renameIfAbsent(String oldKey, String newKey) {
+        return redisTemplate.renameIfAbsent(oldKey, newKey);
+    }
+
+    /**
+     * 返回 key 所储存的值的类型
+     * @param key key值
+     * @return 返回key值的类型
+     */
+    public DataType type(String key) {
+        return redisTemplate.type(key);
+    }
+
+    /**
+     * 序列化key值
+     * @param key key值
+     * @return 序列化后的结果
+     */
+    public byte[] dump(String key) {
+        return redisTemplate.dump(key);
     }
 
     //****************************String****************************//

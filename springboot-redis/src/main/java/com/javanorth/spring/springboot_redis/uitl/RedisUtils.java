@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -141,6 +142,54 @@ public class RedisUtils {
 
     //****************************String****************************//
 
+    /**
+     * 设置key
+     * @param key key值
+     * @param value value值
+     */
+    public void set(String key, String value) {
+        redisTemplate.opsForValue().set(key, value);
+    }
+
+    /**
+     * 获取指定 key 的值
+     * @param key key值
+     * @return key对应的value值
+     */
+    public String get(String key) {
+        return redisTemplate.opsForValue().get(key);
+    }
+
+    /**
+     * 返回 key 中字符串值的子字符
+     * @param key key
+     * @param start 开始位置
+     * @param end 结束位置
+     * @return 字串
+     */
+    public String getRange(String key, long start, long end) {
+        return redisTemplate.opsForValue().get(key, start, end);
+    }
+
+    /**
+     * 设置当前key的value，并且返回旧的value值
+     * @param key key值
+     * @param value value值
+     * @return 旧的value值
+     */
+    public String getAndSet(String key, String value) {
+        return redisTemplate.opsForValue().getAndSet(key, value);
+    }
+
+    /**
+     * 批量获取
+     *
+     * @param keys
+     * @return
+     */
+    public List<String> multiGet(Collection<String> keys) {
+        return redisTemplate.opsForValue().multiGet(keys);
+    }
     //****************************Hash****************************//
 
     //****************************List****************************//

@@ -13,5 +13,11 @@
         <module>springboot-init</module>
         <module>springboot-mybatis</module>
         <module>springboot-redis</module>
+        <!--整合swagger-->
+        <module>springboot-swagger</module>
+        <!--整合rabbitmq-->
+        <module>springboot-rabbitmq</module>
+        <!--整合websocket-->
+        <module>springboot-websocket</module>
     </modules>
 </project>

@@ -1,7 +1,7 @@
 spring:
   # redis configuration
   redis:
-    host: localhost
+    host: 172.16.3.142
     port: 6379
     database: 0
     client-name: redis

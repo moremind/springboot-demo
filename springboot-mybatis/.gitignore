@@ -18,10 +18,6 @@ target/
 *.iws
 *.iml
 *.ipr
-.mvn
-mvnw
-mvnw.cmd
-spring-demo.iml
 
 ### NetBeans ###
 /nbproject/private/

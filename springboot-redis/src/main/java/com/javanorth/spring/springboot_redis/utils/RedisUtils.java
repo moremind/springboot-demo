@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @author finen
  * email: hefengen@hotmail.com
  */
-@Component
+//@Component
 public class RedisUtils {
     @Autowired
     StringRedisTemplate redisTemplate;

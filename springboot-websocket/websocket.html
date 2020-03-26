@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text" name="" id="txt">
+
+    <button id="send">发送消息</button>
+
+    <div id="message">
+        <!--    <button id="">连接websocket</button>-->
+        <!--    <button id="open">连接websocket</button>-->
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    var websocket = null;
+    if ("WebSocket" in window) {
+        console.log("支持websocket");
+        websocket = new WebSocket("ws://localhost:8080/websocket");
+        websocket.onopen = function(event) {
+            console.log("连接websocket");
+            // doSomething(event.data);
+        };
+        websocket.onmessage = function (event) {
+            console.log("收到websocket消息", event.data);
+            doSomething(event.data);
+        };
+        websocket.onclose = function (event) {
+            console.log("关闭websocket!");
+        };
+        websocket.onerror = function (event) {
+            console.log("websocket异常!");
+        };
+    }
+    function doSomething(innerHTML) {
+        // 执行任务
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+    $("#send").on('click', function () {
+        websocket.send($('#txt').val());
+    });
+</script>
+</html>

@@ -1,5 +1,7 @@
 package com.javanorth.spring.springboot_redis.config;
 
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 
 @Configuration
 @EnableCaching
+@AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfiguration {
     @Bean
     @SuppressWarnings("uncheck")

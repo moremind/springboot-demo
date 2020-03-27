@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @author finen
  * email: hefengen@hotmail.com
  */
-//@Component
+@Component
 public class RedisUtils {
     @Autowired
     StringRedisTemplate redisTemplate;

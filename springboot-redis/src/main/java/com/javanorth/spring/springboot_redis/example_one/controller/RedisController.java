@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/redis")
 public class RedisController {
 
-//    @Autowired
-//    RedisUtils redisUtils;
+    @Autowired
+    RedisUtils redisUtils;
 
     @RequestMapping("/set")
     public void setValue(@RequestBody RedisDTO redisDTO) {
+        redisUtils.set(redisDTO.getId(), redisDTO.getValue());
 
     }
 
     @RequestMapping("/get")
     public String getValue(@RequestParam String id) {
-        RedisUtils redisUtils = new RedisUtils();
-
+        System.out.println("key:" + id);
         return redisUtils.get(id);
     }
 

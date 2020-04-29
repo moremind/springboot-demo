@@ -10,14 +10,17 @@
     <name>SpringBoot Demo</name>
     <packaging>pom</packaging>
     <modules>
+        <!-- springboot全局初始化 -->
         <module>springboot-init</module>
+        <!-- springboot整合mybatis -->
         <module>springboot-mybatis</module>
+        <!-- springboot整合redis -->
         <module>springboot-redis</module>
-        <!--整合swagger-->
+        <!-- springboot整合swagger -->
         <module>springboot-swagger</module>
-        <!--整合rabbitmq-->
+        <!-- springboot整合rabbitmq -->
         <module>springboot-rabbitmq</module>
-        <!--整合websocket-->
+        <!-- springboot整合websocket -->
         <module>springboot-websocket</module>
     </modules>
 </project>

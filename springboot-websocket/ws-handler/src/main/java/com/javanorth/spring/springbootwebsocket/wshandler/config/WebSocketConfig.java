@@ -1,6 +1,6 @@
-package com.javanorth.spring.springbootwebsocket.config;
+package com.javanorth.spring.springbootwebsocket.wshandler.config;
 
-import com.javanorth.spring.springbootwebsocket.handler.WsHandler;
+import com.javanorth.spring.springbootwebsocket.wshandler.handler.WsHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

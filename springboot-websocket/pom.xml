@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot</description>
     <modules>
         <module>serverendpoint</module>
-        <module>ws_handler</module>
+        <module>ws-handler</module>
     </modules>
 
     <properties>

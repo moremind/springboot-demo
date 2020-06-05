@@ -23,6 +23,8 @@
         <!-- springboot整合websocket -->
         <module>springboot-websocket</module>
         <module>springboot-netty</module>
-        <module>springboot-netty</module>
+        <module>springboot-security</module>
+        <module>springboot-websocket/serverendpoint</module>
+        <module>springboot-websocket/ws-handler</module>
     </modules>
 </project>

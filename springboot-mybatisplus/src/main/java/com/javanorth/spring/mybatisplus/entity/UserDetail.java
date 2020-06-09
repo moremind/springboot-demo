@@ -12,8 +12,8 @@ import lombok.Data;
 @TableName("tb_user_detail")
 public class UserDetail {
 
-    @TableId(value = "id", type = IdType.NONE)
-    private Long id;
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    private String id;
 
     @TableField("name")
     private String name;
@@ -23,4 +23,7 @@ public class UserDetail {
 
     @TableField("email")
     private String email;
+
+    public UserDetail() {
+    }
 }

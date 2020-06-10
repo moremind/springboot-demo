@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @TableName("tb_user_detail")
 public class UserDetail {
 
@@ -24,6 +26,4 @@ public class UserDetail {
     @TableField("email")
     private String email;
 
-    public UserDetail() {
-    }
 }

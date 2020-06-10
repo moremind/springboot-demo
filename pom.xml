@@ -26,5 +26,6 @@
         <module>springboot-security</module>
         <module>springboot-websocket/serverendpoint</module>
         <module>springboot-websocket/ws-handler</module>
+        <module>springboot-mybatisplus</module>
     </modules>
 </project>

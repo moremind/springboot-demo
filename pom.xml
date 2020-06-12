@@ -27,5 +27,7 @@
         <module>springboot-websocket/serverendpoint</module>
         <module>springboot-websocket/ws-handler</module>
         <module>springboot-mybatisplus</module>
+        <module>springboot-logging</module>
+        <module>springboot-logging/springboot-log4j2</module>
     </modules>
 </project>

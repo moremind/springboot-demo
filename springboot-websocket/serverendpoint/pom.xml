@@ -11,7 +11,7 @@
     <groupId>com.javanorth.spring</groupId>
     <artifactId>springboot-websocket</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-websocket</name>
+    <name>springboot-websocket-serverendpoint</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

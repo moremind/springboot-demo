@@ -22,12 +22,20 @@
         <module>springboot-rabbitmq</module>
         <!-- springboot整合websocket -->
         <module>springboot-websocket</module>
-        <module>springboot-netty</module>
-        <module>springboot-security</module>
+        <!-- springboot通过serverendpoint实现websocket -->
         <module>springboot-websocket/serverendpoint</module>
+        <!-- springboot通过ws-handler实现websocket -->
         <module>springboot-websocket/ws-handler</module>
+        <!-- springboot整合mybatisplus -->
         <module>springboot-mybatisplus</module>
         <module>springboot-logging</module>
+        <!-- springboot整合log4j2 -->
         <module>springboot-logging/springboot-log4j2</module>
+        <!-- springboot整合logback -->
+        <module>springboot-logging/springboot-logback</module>
+        <!-- springboot通过netty实现不同的server -->
+        <module>springboot-netty</module>
+        <!-- springboot security整合 -->
+        <module>springboot-security</module>
     </modules>
 </project>

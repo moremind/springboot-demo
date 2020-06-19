@@ -35,7 +35,7 @@
         <RollingFile name="RollingFileTrace" immediateFlush="true" fileName="${LOG_HOME}/trace.log"
                      filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/trace_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] - [%t] [%p] - %logger{36} - %m%n"/>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] - [%t] [%p] - %logger{1.} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>

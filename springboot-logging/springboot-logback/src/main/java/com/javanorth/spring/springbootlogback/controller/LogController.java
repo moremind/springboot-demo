@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LogController {
-    private Logger logger = LoggerFactory.getLogger(LogController.class);
+    private Logger LOGGER = LoggerFactory.getLogger(LogController.class);
 
     @GetMapping("/log")
     public void test() {
 
         LogUtil.info(this.getClass(), "This is info log");
-        logger.info("this is log...");
+        LOGGER.info("this is log...");
         for (int i = 0; i < 100; i++) {
             LogUtil.info(LogController.class, "This is info log");
             LogUtil.warn(LogController.class,"This is warning log");
@@ -26,9 +26,11 @@ public class LogController {
     /**
      * 用于测试
      */
-    @Scheduled(cron = "0/30 * * * * ?")
+    @Scheduled(cron = "0/2 * * * * ?")
     public void test1() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 200; i++) {
+            LogUtil.debug(this.getClass(), "this is debug log");
+            LogUtil.trace(this.getClass(), "this is trace log");
             LogUtil.info(this.getClass(),"This is info log");
             LogUtil.warn(this.getClass(),"This is warning log");
             LogUtil.error(this.getClass(),"This is error log");

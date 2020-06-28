@@ -1,10 +1,10 @@
-package com.javanorth.spring.springbootserverendpoint;
+package com.javanorth.spring.springbootwebsocket.serverendpoint;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootserverendpointApplicationTests {
+class ServerendpointApplicationTests {
 
     @Test
     void contextLoads() {

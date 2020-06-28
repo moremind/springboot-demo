@@ -1,13 +1,13 @@
-package com.javanorth.spring.springbootserverendpoint;
+package com.javanorth.spring.springbootwebsocket.serverendpoint;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootserverendpointApplication {
+public class ServerendpointApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootserverendpointApplication.class, args);
+        SpringApplication.run(ServerendpointApplication.class, args);
     }
 
 }

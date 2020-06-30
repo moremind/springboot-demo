@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.javanorth.spring</groupId>
-    <artifactId>springboot_netty_http_websocket_server</artifactId>
+    <artifactId>springbootnettyserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot_netty_http_websocket_server</name>
+    <name>springbootnettyserver</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

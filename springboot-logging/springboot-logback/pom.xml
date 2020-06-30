@@ -11,7 +11,7 @@
     <groupId>com.javanorth.spring</groupId>
     <artifactId>springbootlogback</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springbootlogback</name>
+    <name>springboot-logback</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

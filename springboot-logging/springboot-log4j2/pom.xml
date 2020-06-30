@@ -24,9 +24,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <!-- 排除springboot自带的log依赖 -->
             <exclusions>
+                <!--排除logback-->
                 <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
                     <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>log4j</groupId>

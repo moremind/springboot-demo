@@ -3,6 +3,7 @@ package com.javanorth.spring.springbootrabbitmq.service.impl;
 import com.google.gson.Gson;
 import com.javanorth.spring.springbootrabbitmq.dto.MessageDTO;
 import com.javanorth.spring.springbootrabbitmq.service.ConsumerService;
+import com.javanorth.spring.springbootrabbitmq.util.LogUtil;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class DirectConsumerService implements ConsumerService {
     public void onMessage(String msg) {
         Gson gson = new Gson();
         MessageDTO messageDTO = gson.fromJson(msg, MessageDTO.class);
-        System.out.println("receive rabbitmq message1:" + msg);
+        LogUtil.info(getClass(),"receive rabbitmq message1:", msg);
     }
 
     @RabbitListener(queues = "${rabbitmqConfig.directQueue}")
@@ -27,7 +28,7 @@ public class DirectConsumerService implements ConsumerService {
     public void onMessage2(String msg) {
         Gson gson = new Gson();
         MessageDTO messageDTO = gson.fromJson(msg, MessageDTO.class);
-        System.out.println("receive rabbitmq message2:" + msg);
+        LogUtil.info(getClass(),"receive rabbitmq message2:", msg);
     }
 
 

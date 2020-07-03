@@ -2,6 +2,7 @@ package com.javanorth.spring.springbootredis.exampletwo.interceptor;
 
 import com.google.gson.Gson;
 import com.javanorth.spring.springbootredis.exampletwo.annotation.ApiIdempotent;
+import com.javanorth.spring.springbootredis.exampletwo.exception.ServiceException;
 import com.javanorth.spring.springbootredis.exampletwo.response.ResultUtils;
 import com.javanorth.spring.springbootredis.exampletwo.service.TokenService;
 import com.javanorth.spring.springbootredis.utils.LogUtil;
@@ -41,10 +42,12 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor {
             try {
                 tokenService.checkToken(request);
                 return true;
-            } catch (Exception e) {
+            } catch (ServiceException e) {
                 LogUtil.error(this.getClass(), e.getMessage());
                 // 将对饮的错误返回
-                response.getWriter().write(gson.toJson(ResultUtils.error(e.getMessage())));
+                response.getWriter().write(gson.toJson(ResultUtils.error(e.getRetCode(), e.getMsg())));
+                return false;
+            } catch (Exception ex) {
                 return false;
             }
         }

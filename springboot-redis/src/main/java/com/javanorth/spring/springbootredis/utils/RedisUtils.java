@@ -95,16 +95,16 @@ public class RedisUtils {
      * 删除key
      * @param key key值
      */
-    public void delete(String key) {
-        redisTemplate.delete(key);
+    public Boolean delete(String key) {
+        return redisTemplate.delete(key);
     }
 
     /**
      * 批量删除key值
      * @param keys key的集合
      */
-    public void deleteKeys(Collection<String> keys) {
-        redisTemplate.delete(keys);
+    public Long deleteKeys(Collection<String> keys) {
+        return redisTemplate.delete(keys);
     }
 
     /**
@@ -217,17 +217,7 @@ public class RedisUtils {
         return redisTemplate.opsForValue().getBit(key, offset);
     }
 
-    /**
-     * 设置ASCII码, 字符串'a'的ASCII码是97, 转为二进制是'01100001', 此方法是将二进制第offset位值变为value
-     *
-     * @param key
-     * @param postion
-     *            位置
-     * @param value
-     *            值,true为1, false为0
-     * @return
-     */
-    public boolean setBit(String key, long offset, boolean value) {
+    public Boolean setBit(String key, long offset, boolean value) {
         return redisTemplate.opsForValue().setBit(key, offset, value);
     }
 
@@ -253,7 +243,7 @@ public class RedisUtils {
      * @param value
      * @return 之前已经存在返回false,不存在返回true
      */
-    public boolean setIfAbsent(String key, String value) {
+    public Boolean setIfAbsent(String key, String value) {
         return redisTemplate.opsForValue().setIfAbsent(key, value);
     }
 
@@ -294,15 +284,15 @@ public class RedisUtils {
      * @param maps
      * @return 之前已经存在返回false,不存在返回true
      */
-    public boolean multiSetIfAbsent(Map<String, String> maps) {
+    public Boolean multiSetIfAbsent(Map<String, String> maps) {
         return redisTemplate.opsForValue().multiSetIfAbsent(maps);
     }
 
     /**
      * 增加(自增长), 负数则为自减
      *
-     * @param key
-     * @param value
+     * @param key 值
+     * @param increment 自增值
      * @return
      */
     public Long incrBy(String key, long increment) {
@@ -311,8 +301,8 @@ public class RedisUtils {
 
     /**
      *
-     * @param key
-     * @param value
+     * @param key 值
+     * @param increment 自增数
      * @return
      */
     public Double incrByFloat(String key, double increment) {
@@ -400,7 +390,7 @@ public class RedisUtils {
      * @param field
      * @return
      */
-    public boolean hExists(String key, String field) {
+    public Boolean hExists(String key, String field) {
         return redisTemplate.opsForHash().hasKey(key, field);
     }
 
@@ -937,10 +927,7 @@ public class RedisUtils {
 
     /**
      * 获取集合所有元素
-     *
      * @param key
-     * @param otherKeys
-     * @param destKey
      * @return
      */
     public Set<String> setMembers(String key) {

@@ -1,6 +1,8 @@
 package com.javanorth.spring.springbootredis.exampletwo.service.impl;
 
 
+import com.javanorth.spring.springbootredis.exampletwo.exception.ExceptionEnum;
+import com.javanorth.spring.springbootredis.exampletwo.exception.ServiceException;
 import com.javanorth.spring.springbootredis.exampletwo.service.TokenService;
 import com.javanorth.spring.springbootredis.utils.LogUtil;
 import com.javanorth.spring.springbootredis.utils.RedisUtils;
@@ -43,13 +45,17 @@ public class TokenServiceImpl implements TokenService {
         String token = request.getHeader(TOKEN_NAME);
         // 判断接口请求头是否包括token
         if (StringUtils.isBlank(token)) {
-            throw new RuntimeException("this header no token");
+            throw new ServiceException(ExceptionEnum.HEADER_NO_TOKEN.getCode(), ExceptionEnum.HEADER_NO_TOKEN.getMsg());
         }
         // 判断redis是否存在该key
         if (!redisUtils.hasKey(token)) {
-            throw new RuntimeException("the token is not exist");
+            throw new ServiceException(ExceptionEnum.TOKEN_NOT_EXIST.getCode(), ExceptionEnum.TOKEN_NOT_EXIST.getMsg());
         }
-        redisUtils.delete(token);
+        boolean remove = redisUtils.delete(token);
+        if (!remove) {
+            throw new ServiceException(ExceptionEnum.DELETE_KEY_FAILED.getCode(), ExceptionEnum.DELETE_KEY_FAILED.getMsg());
+        }
+
         LogUtil.info(this.getClass(), "delete key from redis:", token);
     }
 }

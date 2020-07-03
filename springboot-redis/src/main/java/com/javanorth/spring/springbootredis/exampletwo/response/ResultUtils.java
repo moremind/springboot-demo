@@ -10,16 +10,16 @@ import lombok.ToString;
 @Builder
 @ToString
 public class ResultUtils<T> {
-    private int code;
+    private String code;
     private String msg;
     private T data;
 
-    public ResultUtils(int code, String msg) {
+    public ResultUtils(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResultUtils(int code, String msg, T data) {
+    public ResultUtils(String code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -33,11 +33,11 @@ public class ResultUtils<T> {
         return new ResultUtils<>(Result.SUCCESS.getCode(), Result.SUCCESS.getMsg(), data);
     }
 
-    public static ResultUtils success(int code, String msg) {
+    public static ResultUtils success(String code, String msg) {
         return new ResultUtils(code, msg);
     }
 
-    public static ResultUtils success(int code, String msg, Object data) {
+    public static ResultUtils success(String code, String msg, Object data) {
         return new ResultUtils<>(code, msg, data);
     }
 
@@ -49,11 +49,11 @@ public class ResultUtils<T> {
         return new ResultUtils<>(Result.ERROR.getCode(), Result.ERROR.getMsg(), data);
     }
 
-    public static ResultUtils error(int code, String msg) {
+    public static ResultUtils error(String code, String msg) {
         return new ResultUtils(code, msg);
     }
 
-    public static ResultUtils error(int code, String msg, Object data) {
+    public static ResultUtils error(String code, String msg, Object data) {
         return new ResultUtils<>(code, msg, data);
     }
 

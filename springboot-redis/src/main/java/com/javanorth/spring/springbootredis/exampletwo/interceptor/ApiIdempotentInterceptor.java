@@ -45,6 +45,7 @@ public class ApiIdempotentInterceptor implements HandlerInterceptor {
             } catch (ServiceException e) {
                 LogUtil.error(this.getClass(), e.getMessage());
                 // 将对饮的错误返回
+                response.setContentType("application/json");
                 response.getWriter().write(gson.toJson(ResultUtils.error(e.getRetCode(), e.getMsg())));
                 return false;
             } catch (Exception ex) {

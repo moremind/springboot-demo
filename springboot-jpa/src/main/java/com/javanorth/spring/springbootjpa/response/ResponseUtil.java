@@ -119,6 +119,36 @@ public class ResponseUtil<T> {
         }
     }
 
+    public static ResponseUtil success(String path) {
+        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+                .path(path)
+                .message(ResponseResult.REQUEST_SUCCESS.getMsg())
+                .build();
+    }
+
+    public static ResponseUtil success(String path, Object data) {
+        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+                .path(path)
+                .message(ResponseResult.REQUEST_SUCCESS.getMsg())
+                .data(data)
+                .build();
+    }
+
+    public static ResponseUtil success(String code, String msg, String path) {
+        return new ResponseUtil.Builder().code(code)
+                .path(path)
+                .message(msg)
+                .build();
+    }
+
+    public static ResponseUtil success(String code, String msg, String path, Object data) {
+        return new ResponseUtil.Builder().code(code)
+                .path(path)
+                .message(msg)
+                .data(data)
+                .build();
+    }
+
     /**
      * 使用默认成功响应
      * @param path 路径
@@ -141,6 +171,36 @@ public class ResponseUtil<T> {
      * @return 响应状态
      */
     public static ResponseUtil success(String code, String msg, String path, Object... data) {
+        return new ResponseUtil.Builder().code(code)
+                .path(path)
+                .message(msg)
+                .data(data)
+                .build();
+    }
+
+    public static ResponseUtil fail(String path) {
+        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+                .path(path)
+                .message(ResponseResult.REQUEST_SUCCESS.getMsg())
+                .build();
+    }
+
+    public static ResponseUtil fail(String path, Object data) {
+        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+                .path(path)
+                .message(ResponseResult.REQUEST_SUCCESS.getMsg())
+                .data(data)
+                .build();
+    }
+
+    public static ResponseUtil fail(String code, String msg, String path) {
+        return new ResponseUtil.Builder().code(code)
+                .path(path)
+                .message(msg)
+                .build();
+    }
+
+    public static ResponseUtil fail(String code, String msg, String path, Object data) {
         return new ResponseUtil.Builder().code(code)
                 .path(path)
                 .message(msg)

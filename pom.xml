@@ -37,7 +37,9 @@
         <module>springboot-netty</module>
         <!-- springboot security整合 -->
         <module>springboot-security</module>
+        <!--springboot-jpa-example-->
         <module>springboot-jpa</module>
+        <!--springboot-mybatis-multiDatasource-example-->
         <module>springboot-mybatis-multidatasource</module>
     </modules>
 </project>

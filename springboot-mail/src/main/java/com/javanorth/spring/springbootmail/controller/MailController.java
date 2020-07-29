@@ -2,8 +2,10 @@ package com.javanorth.spring.springbootmail.controller;
 
 import com.javanorth.spring.springbootmail.dto.MimeFileMailDTO;
 import com.javanorth.spring.springbootmail.dto.MimeMailDTO;
+import com.javanorth.spring.springbootmail.dto.MimeMultiFileMailDTO;
 import com.javanorth.spring.springbootmail.dto.SimpleMailDTO;
 import com.javanorth.spring.springbootmail.request.MailFileRequest;
+import com.javanorth.spring.springbootmail.request.MailMultiFileRequest;
 import com.javanorth.spring.springbootmail.request.MailRequest;
 import com.javanorth.spring.springbootmail.response.ResponseUtil;
 import com.javanorth.spring.springbootmail.service.MailService;
@@ -53,6 +55,12 @@ public class MailController {
         return ResponseUtil.success(request.getRequestURI());
     }
 
+    /**
+     * send mail with single file
+     * @param request
+     * @param mailRequest
+     * @return
+     */
     @PostMapping("/sendMimeFileMail")
     public ResponseUtil sendMimeFileMail(HttpServletRequest request, @RequestBody MailFileRequest mailRequest) {
         LogUtil.info(MailController.class, "request params: {}", mailRequest);
@@ -62,7 +70,21 @@ public class MailController {
                 .filePath(mailRequest.getFilePath())
                 .build();
 
-        mailService.sendMimeMailWithFile(mimeFileMailDTO);
+        mailService.sendMimeMailWithSimpleFile(mimeFileMailDTO);
+        return ResponseUtil.success(request.getRequestURI());
+    }
+
+    @PostMapping("/sendMimeMultiFileMail")
+    public ResponseUtil sendMimeMultiFileMail(HttpServletRequest request, @RequestBody MailMultiFileRequest mailMultiFileRequest) {
+        LogUtil.info(MailController.class, "request params: {}", mailMultiFileRequest);
+
+        MimeMultiFileMailDTO mimeMultiFileMailDTO = MimeMultiFileMailDTO.builder()
+                .toAddress(mailMultiFileRequest.getToAddress())
+                .subject(mailMultiFileRequest.getSubject())
+                .content(mailMultiFileRequest.getContent())
+                .filePath(mailMultiFileRequest.getFilePath())
+                .build();
+        mailService.sendMimeMultiFileMail(mimeMultiFileMailDTO);
         return ResponseUtil.success(request.getRequestURI());
     }
 

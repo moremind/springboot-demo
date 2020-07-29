@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 @ResponseBody
 public class ActionAdvice {
 
+    /**
+     * handle SendMailException
+     * return response of ResponseUtil
+     * @see ResponseUtil
+     */
     @ExceptionHandler(SendMailException.class)
     @ResponseStatus(HttpStatus.OK)
     public ResponseUtil handleException(HttpServletRequest request, Exception e) {

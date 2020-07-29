@@ -2,6 +2,7 @@ package com.javanorth.spring.springbootmail.service;
 
 import com.javanorth.spring.springbootmail.dto.MimeFileMailDTO;
 import com.javanorth.spring.springbootmail.dto.MimeMailDTO;
+import com.javanorth.spring.springbootmail.dto.MimeMultiFileMailDTO;
 import com.javanorth.spring.springbootmail.dto.SimpleMailDTO;
 
 public interface MailService {
@@ -21,5 +22,12 @@ public interface MailService {
      * 发送附带附件的文本文件
      * @param mimeFileMailDTO
      */
-    void sendMimeMailWithFile(MimeFileMailDTO mimeFileMailDTO);
+    void sendMimeMailWithSimpleFile(MimeFileMailDTO mimeFileMailDTO);
+
+
+    /**
+     * send mail with multi files
+     * @param mimeMultiFileMailDTO
+     */
+    void sendMimeMultiFileMail(MimeMultiFileMailDTO mimeMultiFileMailDTO);
 }

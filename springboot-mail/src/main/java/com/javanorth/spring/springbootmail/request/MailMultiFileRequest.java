@@ -1,12 +1,11 @@
 package com.javanorth.spring.springbootmail.request;
 
-
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class MailRequest {
+public class MailMultiFileRequest {
 
     /**
      * mail to
@@ -22,4 +21,9 @@ public class MailRequest {
      * content of mail
      */
     private String content;
+
+    /**
+     * attach of mail
+     */
+    private String[] filePath;
 }

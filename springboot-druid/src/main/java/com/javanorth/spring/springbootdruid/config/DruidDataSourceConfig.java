@@ -11,6 +11,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -34,8 +35,17 @@ public class DruidDataSourceConfig {
      */
     @Bean
     @ConfigurationProperties("spring.datasource.druid")
-    public DataSource dataSourceOne(){
+    public DataSource dataSource(){
         return DruidDataSourceBuilder.create().build();
+    }
+
+    /**
+     * Druid Datasource transaction manager
+     * @return DataSourceTransactionManager
+     */
+    @Bean(name = "transactionManager")
+    public DataSourceTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 
     /**

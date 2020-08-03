@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/druid")
+@RequestMapping("/druidDatasource")
 public class DruidController {
     @Autowired
     UserDetailDao userDetailDao;

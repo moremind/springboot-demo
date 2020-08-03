@@ -6,6 +6,7 @@
     <!-- 配置日志文件输出目录，此配置将日志输出到tomcat根目录下的指定文件夹 -->
     <properties>
         <property name="LOG_HOME">./WebAppLogs/logs</property>
+        <property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${sys:PID} --- [%15.15t] %-40.40c{1.} : %m%n</property>
     </properties>
     <!--先定义所有的appender-->
     <appenders>
@@ -26,7 +27,7 @@
         <!--这个输出控制台的配置-->
         <console name="Console" target="SYSTEM_OUT">
             <!--输出日志的格式-->
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{1.} : %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <!--<PatternLayout pattern="[%d{HH:mm:ss:SSS}] - (%F:%l) - %m%n"/>-->
             <!--<PatternLayout pattern="[%d{HH:mm:ss:SSS}] (%F:%L) %m%n" />-->
         </console>
@@ -35,7 +36,7 @@
         <RollingFile name="RollingFileTrace" immediateFlush="true" fileName="${LOG_HOME}/trace.log"
                      filePattern="${LOG_HOME}/trace_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] - [%t] [%p] - %logger{1.} - %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
@@ -56,7 +57,7 @@
         <RollingFile name="RollingFileDebug" immediateFlush="true" fileName="${LOG_HOME}/debug.log"
                      filePattern="${LOG_HOME}/debug_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{1.} : %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
@@ -74,7 +75,7 @@
                      filePattern="${LOG_HOME}/info_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{36} : %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
@@ -91,7 +92,7 @@
         <RollingFile name="RollingFileWarn" immediateFlush="true" fileName="${LOG_HOME}/warn.log"
                      filePattern="${LOG_HOME}/warn_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{1.} : %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>
@@ -108,7 +109,7 @@
         <RollingFile name="RollingFileError" immediateFlush="true" fileName="${LOG_HOME}/error.log"
                      filePattern="${LOG_HOME}/error_%d{yyyy-MM-dd-HH}-%i.log.zip">
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{1.} : %m%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>

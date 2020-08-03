@@ -1,6 +1,7 @@
 # springboot-demo
 > 本项目通过Springboot整合目前已知的大部分框架以及应用。
 
+* **springboot-druid**: springboot整合druid数据源实现数据库监控
 * **springboot-elasticsearch** : sprinboot整合elasticsearch
 * **springboot-init**: springboot初始化mybatis/logback/分包打包
 * **springboot-jpa**: springboot整合jpa实现简单的jpa接口
@@ -14,12 +15,17 @@
 * **springboot-netty**: springboot整合netty实现http-server与websocket-server
 * **springboot-rabbitmq**: springboot整合rabbitmq实现mq的订阅发布、广播模式
 * **springboot-redis**: springboot整合redis实现简单的redis接口以及通过redis实现接口幂等性
+    * **example_one**: 通过redis-util实现简单的redis接口调用
+    * **example_two**: 通过redis-util实现接口幂等性
 * **springboot-security**: springboot整合security实现接口授权访问
 * **springboot-shiro**: springboot整合shiro实现简单的权限访问
 * **springboot-swagger**: springboot整合swagger实现restful接口文档
 * **springboot-websocket**: 
     * **serverendpoint**: springboot通过serverendpoint方式设计websocket
     * **wshandler**: springboot通过wshandler方式实现websocket
+
+## Introduction
+Java Version: Java8
 
 ## License
 MIT

@@ -41,9 +41,13 @@
         <module>springboot-jpa</module>
         <!--springboot-mybatis-multiDatasource-example-->
         <module>springboot-mybatis-multidatasource</module>
+        <!-- springboot-mail example -->
         <module>springboot-mail</module>
+        <!-- springboot-druid example -->
         <module>springboot-druid</module>
+        <!-- springboot-shiro example -->
         <module>springboot-shiro</module>
+        <!-- springboot-elasticsearch example -->
         <module>springboot-elasticsearch</module>
     </modules>
 </project>

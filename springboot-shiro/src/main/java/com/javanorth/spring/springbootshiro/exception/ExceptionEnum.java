@@ -24,6 +24,10 @@ public enum ExceptionEnum {
 
     SEND_MAIL_EXCEPTION("ISE10002", "Send Mail Error"),
 
+    USER_EXIST("ISE10002", "User Already Exist"),
+    USER_NOT_EXIST("ISE10003", "User NOT Exist"),
+    PWD_ERROR("ISE10004", "PASSWORD ERROR"),
+
     // 略
     ;
 

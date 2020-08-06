@@ -18,6 +18,9 @@ public enum ResponseResult {
     LOGIN_SUCCESS("S20001", "Login Success"),
     REQUEST_FAILED("S40000", "Request Failed"),
     SEND_MAIL_FAILED("S10001", "Send Mail Failed"),
+    USER_EXIST("S10002", "Username Already Exist, Please Use Another"),
+    USER_NOT_EXIST("S10003", "Username Not Exist"),
+    PWD_ERROR("S10004", "Password Error"),
 
     ;
     private final String code;

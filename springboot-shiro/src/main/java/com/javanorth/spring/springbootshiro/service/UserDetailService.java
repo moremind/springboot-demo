@@ -16,5 +16,5 @@ public interface UserDetailService {
      * @param password
      * @return
      */
-    boolean userLogin(String username, String password);
+    void userLogin(String username, String password);
 }

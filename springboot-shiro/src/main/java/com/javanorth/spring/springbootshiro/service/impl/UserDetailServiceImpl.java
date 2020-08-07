@@ -1,14 +1,17 @@
 package com.javanorth.spring.springbootshiro.service.impl;
 
+import com.javanorth.spring.springbootshiro.constant.ShiroConstant;
 import com.javanorth.spring.springbootshiro.dao.UserDetailDao;
 import com.javanorth.spring.springbootshiro.entity.UserDetail;
 import com.javanorth.spring.springbootshiro.exception.ExceptionEnum;
-import com.javanorth.spring.springbootshiro.exception.PasswordErrorException;
 import com.javanorth.spring.springbootshiro.exception.UserAlreadyExistException;
 import com.javanorth.spring.springbootshiro.exception.UserNotExistException;
 import com.javanorth.spring.springbootshiro.service.UserDetailService;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +34,10 @@ public class UserDetailServiceImpl implements UserDetailService {
             String uuid = UUID.randomUUID().toString().replace("-", "");
 
             // generate salt
-            String salt = uuid.substring(0, 5);
+            String salt = uuid.substring(ShiroConstant.SALT_BEGIN, ShiroConstant.SALT_END);
 
-            String md5Pwd = new SimpleHash("MD5", password, salt, 1).toString();
+            String md5Pwd = String.valueOf(new SimpleHash(ShiroConstant.ENCRYPT_TYPE, password,
+                    salt, ShiroConstant.ENCRYPT_TIMES));
             UserDetail userDetail = UserDetail.builder().uid(uuid)
                     .username(username)
                     .salt(salt)
@@ -45,21 +49,18 @@ public class UserDetailServiceImpl implements UserDetailService {
     }
 
     @Override
-    public boolean userLogin(String username, String password) {
+    public void userLogin(String username, String password) {
         LogUtil.info(UserDetailServiceImpl.class, "user register username, pwd: {}, {}", username, password);
         UserDetail userDetail = checkUserExist(username);
         if (userDetail == null) {
             throw new UserNotExistException(ExceptionEnum.USER_NOT_EXIST.getRetCode(),
                     ExceptionEnum.USER_NOT_EXIST.getMessage());
         } else {
-            String md5Pwd = new SimpleHash("MD5", password, userDetail.getSalt(), 1).toString();
-            if (md5Pwd.equals(userDetail.getPassword())) {
-                LogUtil.info(UserDetailServiceImpl.class, "user login success");
-                // login success
-                return true;
-            } else {
-                throw new PasswordErrorException(ExceptionEnum.PWD_ERROR.getRetCode(), ExceptionEnum.PWD_ERROR.getMessage());
-            }
+            String md5Pwd = String.valueOf(new SimpleHash(ShiroConstant.ENCRYPT_TYPE, password,
+                    userDetail.getSalt(), ShiroConstant.ENCRYPT_TIMES));
+            Subject subject = SecurityUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(username, md5Pwd);
+            subject.login(token);
         }
     }
 

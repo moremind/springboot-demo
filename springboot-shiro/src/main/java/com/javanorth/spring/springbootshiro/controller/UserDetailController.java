@@ -6,9 +6,6 @@ import com.javanorth.spring.springbootshiro.response.ResponseUtil;
 import com.javanorth.spring.springbootshiro.service.impl.UserDetailServiceImpl;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,46 +39,46 @@ public class UserDetailController {
      */
     @PostMapping("/login")
     public ResponseUtil userLogin(HttpServletRequest request, @RequestBody UserDetailRequest userDetailRequest) {
-        boolean flag = userDetailService.userLogin(userDetailRequest.getUsername(), userDetailRequest.getPassword());
-        if (flag) {
-            return ResponseUtil.success(ResponseResult.LOGIN_SUCCESS.getCode(), ResponseResult.LOGIN_SUCCESS.getMsg(),
+        userDetailService.userLogin(userDetailRequest.getUsername(), userDetailRequest.getPassword());
+        return ResponseUtil.success(ResponseResult.LOGIN_SUCCESS.getCode(), ResponseResult.LOGIN_SUCCESS.getMsg(),
+                request.getRequestURI());
+    }
+
+    /**
+     * judge auth
+     * @param request
+     * @return
+     */
+    @GetMapping("/judgeAuth")
+    public ResponseUtil judgeAuth(HttpServletRequest request) {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            LogUtil.info(this.getClass(), "auth success");
+            return ResponseUtil.success(ResponseResult.AUTH_SUCCESS.getCode(), ResponseResult.AUTH_SUCCESS.getMsg(),
                     request.getRequestURI());
         } else {
-            return ResponseUtil.success(ResponseResult.LOGIN_FAILED.getCode(), ResponseResult.LOGIN_FAILED.getMsg(),
+            LogUtil.info(this.getClass(), "auth failed");
+            return ResponseUtil.success(ResponseResult.AUTH_ERROR.getCode(), ResponseResult.AUTH_ERROR.getMsg(),
                     request.getRequestURI());
         }
     }
 
-    @PostMapping("/shiroLogin")
-    public void login(HttpServletRequest request, @RequestBody UserDetailRequest userDetailRequest) {
+    /**
+     * judge auth
+     * @param request
+     * @return
+     */
+    @GetMapping("/judgeRole")
+    public ResponseUtil judgeRoles(HttpServletRequest request) {
         Subject subject = SecurityUtils.getSubject();
-        String md5Pwd = new SimpleHash("MD5", userDetailRequest.getPassword(), "b26ac" , 1).toString();
-        UsernamePasswordToken token = new UsernamePasswordToken(userDetailRequest.getUsername(), userDetailRequest.getPassword());
-        subject.login(token);
-    }
-
-
-
-
-    @GetMapping("/test")
-
-    public ResponseUtil test(HttpServletRequest request) {
-        Subject subject = SecurityUtils.getSubject();
-        LogUtil.info(this.getClass(),"{}", subject.getSession());
-        LogUtil.info(this.getClass(),"{}", subject.isRunAs());
-
-//        LogUtil.info(TestController.class, "test:::::::--++++++++---:{}", userDetail1);
-//        LogUtil.info(TestController.class, "test:::::::-----:{}", UUID.randomUUID().toString().replace("-", ""));
-//        String result = new SimpleHash("MD5", userDetail.getPassword(), userDetail.getSalt(), 1).toString();
-//        LogUtil.info(TestController.class, "test:::::::-----:{}", result);
-//        Subject subject = SecurityUtils.getSubject();
-//        subject.hasRole("Administrator");
-//        if (subject.isAuthenticated()) {
-//            LogUtil.info(TestController.class, "test:::::::-----");
-//        } else {
-//            LogUtil.info(TestController.class, "test:::++++=::::-----");
-//        }
-//        LogUtil.trace(TestController.class, "test:::::::-----");
-        return ResponseUtil.success(request.getRequestURI());
+        if (subject.hasRole("admin")) {
+            LogUtil.info(this.getClass(), "admin success");
+            return ResponseUtil.success(ResponseResult.AUTH_SUCCESS.getCode(), ResponseResult.AUTH_SUCCESS.getMsg(),
+                    request.getRequestURI());
+        } else {
+            LogUtil.info(this.getClass(), "admin failed");
+            return ResponseUtil.success(ResponseResult.AUTH_ERROR.getCode(), ResponseResult.AUTH_ERROR.getMsg(),
+                    request.getRequestURI());
+        }
     }
 }

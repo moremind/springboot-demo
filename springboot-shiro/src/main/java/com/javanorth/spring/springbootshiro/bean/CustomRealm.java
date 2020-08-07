@@ -28,17 +28,11 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected SimpleAuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String username = (String) authenticationToken.getPrincipal();
+        String username = String.valueOf(authenticationToken.getPrincipal());
         LogUtil.info(CustomRealm.class, "user name: {}", username);
-        LogUtil.info(CustomRealm.class, "user pwd: {}", authenticationToken.getCredentials());
+        // query user information
         UserDetail userDetail = userDetailDao.selectUserDetailByUsername(username);
-        if (userDetail == null) {
-            throw new UserNotExistException(ExceptionEnum.USER_NOT_EXIST.getRetCode(),
-                    ExceptionEnum.USER_NOT_EXIST.getMessage());
-        } else {
-
-            return new SimpleAuthenticationInfo(username, "123456", ByteSource.Util.bytes(userDetail.getSalt()), getName());
-        }
+        return new SimpleAuthenticationInfo(username, userDetail.getPassword(), ByteSource.Util.bytes(userDetail.getSalt()), getName());
     }
 
     /**
@@ -48,8 +42,11 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        UserDetail user = (UserDetail) principalCollection.getPrimaryPrincipal();
-        UserDetail userDetail = userDetailDao.selectUserDetailByUsername(user.getUsername());
+        // get username
+        String user = String.valueOf(principalCollection.getPrimaryPrincipal());
+        // query user roles
+        UserDetail userDetail = userDetailDao.selectUserDetailByUsername(user);
+        LogUtil.info(CustomRealm.class, "user info: {}", userDetail.toString());
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addRoles(userRoleDao.selectUserRoleByUid(userDetail.getUid()));
         return simpleAuthorizationInfo;

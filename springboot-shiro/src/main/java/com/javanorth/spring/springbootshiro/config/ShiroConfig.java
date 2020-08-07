@@ -2,8 +2,8 @@ package com.javanorth.spring.springbootshiro.config;
 
 import com.javanorth.spring.springbootshiro.bean.CustomRealm;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -24,21 +24,25 @@ public class ShiroConfig {
     @Bean
     public static DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
-        /**
-         * setUsePrefix(false)用于解决一个奇怪的bug。在引入spring aop的情况下。
-         * 在@Controller注解的类的方法中加入@RequiresRole注解，会导致该方法无法映射请求，导致返回404。
-         * 加入这项配置能解决这个bug
-         */
         creator.setUsePrefix(true);
         return creator;
     }
 
+//    @Bean
+//    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+//        DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
+//        // 由于demo1展示统一使用注解做访问控制，所以这里配置所有请求路径都可以匿名访问
+//        chain.addPathDefinition("/**", "anon"); // all paths are managed via annotations
+//        return chain;
+//    }
+
     @Bean
-    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-        DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
-        // 由于demo1展示统一使用注解做访问控制，所以这里配置所有请求路径都可以匿名访问
-        chain.addPathDefinition("/**", "anon"); // all paths are managed via annotations
-        return chain;
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        //md5加密1次
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(1);
+        return hashedCredentialsMatcher;
     }
 
     @Bean(name = "customRealm")
@@ -53,20 +57,25 @@ public class ShiroConfig {
         return securityManager;
     }
 
-//    @Bean(name = "")
-//    public DefaultWebSecurityManager defaultWebSecurityManager(CustomRealm customRealm) {
-//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager ();
-//        securityManager.setRealm(customRealm);
-//        return securityManager;
-//    }
 
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
+    @Bean(name = "shiroFilterFactoryBean")
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+
+        return shiroFilterFactoryBean;
+    }
+
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;

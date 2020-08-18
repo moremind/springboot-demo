@@ -23,6 +23,7 @@ public enum ResponseResult {
     LOGIN_SUCCESS("S20001", "Login Success"),
     AUTH_SUCCESS("S20002", "User Authenticate Success"),
     REQUEST_FAILED("S40000", "Request Failed"),
+    AUTH_FAILED("S40001", "User Auth Failed, Please Login With Username And Password")
 
     ;
     private final String code;

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -34,10 +34,10 @@ public class UserDetail {
     /**
      * user roles
      */
-    private List<String> roles;
+    private Set<String> roles;
     /**
      * user permission
      */
-    private List<String> permissions;
+    private Set<String> permissions;
 
 }

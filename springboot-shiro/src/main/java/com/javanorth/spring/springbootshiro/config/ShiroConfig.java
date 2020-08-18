@@ -1,6 +1,8 @@
 package com.javanorth.spring.springbootshiro.config;
 
 import com.javanorth.spring.springbootshiro.bean.CustomRealm;
+import com.javanorth.spring.springbootshiro.constant.ShiroConstant;
+import com.javanorth.spring.springbootshiro.filter.ShiroFilter;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
@@ -13,6 +15,10 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.servlet.Filter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
@@ -28,20 +34,20 @@ public class ShiroConfig {
         return creator;
     }
 
-//    @Bean
-//    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-//        DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
-//        // 由于demo1展示统一使用注解做访问控制，所以这里配置所有请求路径都可以匿名访问
-//        chain.addPathDefinition("/**", "anon"); // all paths are managed via annotations
-//        return chain;
-//    }
+    @Bean
+    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+        DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
+        // all paths are managed via annotations
+        chain.addPathDefinition("/**", "anon");
+        return chain;
+    }
 
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        //md5加密1次
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        hashedCredentialsMatcher.setHashIterations(1);
+        // md5 encrypt
+        hashedCredentialsMatcher.setHashAlgorithmName(ShiroConstant.ENCRYPT_TYPE);
+        hashedCredentialsMatcher.setHashIterations(ShiroConstant.ENCRYPT_TIMES);
         return hashedCredentialsMatcher;
     }
 
@@ -67,9 +73,26 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+
+        // set filter
+        Map<String, Filter> filters = new LinkedHashMap<>();
+        filters.put("corsFilter", new ShiroFilter());
+        shiroFilterFactoryBean.setFilters(filters);
+
+        // set filter mapping
+        Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
+        filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/user/login", "anon");
+        filterChainDefinitionMap.put("/user/register", "anon");
+        // logout filter
+        filterChainDefinitionMap.put("/doLogout", "logout");
+
+        // other token must auth
+        filterChainDefinitionMap.put("/**", "authc");
+
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        shiroFilterFactoryBean.setUnauthorizedUrl("/uauth");
 
         return shiroFilterFactoryBean;
     }

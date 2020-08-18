@@ -1,75 +1,33 @@
-package com.javanorth.spring.springbootshiro;
+package com.javanorth.spring.springbootshiro.service.impl;
 
 import com.javanorth.spring.springbootshiro.dao.UserRoleDao;
 import com.javanorth.spring.springbootshiro.entity.Role;
 import com.javanorth.spring.springbootshiro.handler.InitExecutorHandler;
 import com.javanorth.spring.springbootshiro.senum.AdminType;
+import com.javanorth.spring.springbootshiro.service.RoleService;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
-import com.javanorth.spring.springbootshiro.util.SpringUtils;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@SpringBootTest
-class SpringbootShiroApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
+@Service
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     UserRoleDao userRoleDao;
 
-    @Test
+    @Override
     public void initRoleDatabase() {
+        LogUtil.info(RoleServiceImpl.class, "delete role");
+        userRoleDao.deleteAllUserRole();
         List<Role> roles = new ArrayList<>();
-        AdminType[] adminTypes = AdminType.values();
-        LogUtil.info(InitExecutorHandler.class, "all roles: {}");
-        for (AdminType adminType : adminTypes) {
+        for (AdminType adminType : AdminType.values()) {
             roles.add(new Role(adminType.getId(), adminType.getType()));
         }
         LogUtil.info(InitExecutorHandler.class, "all roles: {}", roles);
+        LogUtil.info(RoleServiceImpl.class, "add role");
         userRoleDao.insertAllUserRole(roles);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @Test
-    void test2() {
-        String name = null;
-        System.out.println(StringUtils.isEmpty(name));
-    }
-
 }

@@ -4,13 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javanorth.spring.springbootshiro.dao.UserRoleDao">
 
-    <!--List<String> selectUserRoleByUid(String uid);-->
-    <select id="selectUserRoleByUid" resultType="java.lang.String">
-        select A.role_name
-        from tb_role as A
-        left join tb_user_role as B
-        on A.role_id = B.role_id
-        where B.uid = #{uid, jdbcType=VARCHAR}
-    </select>
+    <!-- void deleteAllUserRole(); -->
+    <delete id="deleteAllUserRole">
+        delete
+        from tb_role
+    </delete>
+
+    <!-- void insertAllUserRole(List<Role> roles); -->
+    <insert id="insertAllUserRole" parameterType="java.util.List">
+        insert into tb_role(role_id, role_name)
+        values
+        <foreach collection = "list" item = "role" index = "index" separator = ",">
+            (
+                #{role.id, jdbcType=INTEGER},
+                #{role.name, jdbcType=VARCHAR}
+            )
+        </foreach>
+
+    </insert>
 
 </mapper>

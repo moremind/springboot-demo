@@ -1,5 +1,6 @@
 package com.javanorth.spring.springbootshiro.dao;
 
+import com.javanorth.spring.springbootshiro.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -9,5 +10,15 @@ import java.util.List;
 @Component
 public interface UserRoleDao {
 
-    List<String> selectUserRoleByUid(String uid);
+    /**
+     * delete default role
+     */
+    void deleteAllUserRole();
+
+    /**
+     * init role
+     * @param roles
+     */
+    void insertAllUserRole(List<Role> roles);
+
 }

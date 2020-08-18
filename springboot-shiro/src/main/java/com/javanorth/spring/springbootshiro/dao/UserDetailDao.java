@@ -4,6 +4,8 @@ import com.javanorth.spring.springbootshiro.entity.UserDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface UserDetailDao {
@@ -21,4 +23,18 @@ public interface UserDetailDao {
      * @return
      */
     boolean insertIntoUserDetail(UserDetail userDetail);
+
+    /**
+     * query role by uid
+     * @param uid
+     * @return
+     */
+    List<String> selectUserRoleByUid(String uid);
+
+    /**
+     * query user permission by uid
+     * @param uid
+     * @return
+     */
+    List<String> selectUserPermissionByUic(String uid);
 }

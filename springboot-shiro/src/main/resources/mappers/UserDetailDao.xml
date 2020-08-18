@@ -18,4 +18,22 @@
         #{salt, jdbcType=VARCHAR})
     </insert>
 
+    <!--List<String> selectUserRoleByUid(String uid);-->
+    <select id="selectUserRoleByUid" resultType="java.lang.String">
+        select A.role_name
+        from tb_role as A
+        left join tb_user_role as B
+        on A.role_id = B.role_id
+        where B.uid = #{uid, jdbcType=VARCHAR}
+    </select>
+
+    <!-- List<String> selectUserPermissionByUic(String uid); -->
+    <select id="selectUserPermissionByUic" resultType="java.lang.String">
+        select A.permission_name
+        from tb_permission as A
+        left join tb_user_permission as B
+        on A.permission_id = B.permission_id
+        where B.uid = #{uid, jdbcType=VARCHAR}
+    </select>
+
 </mapper>

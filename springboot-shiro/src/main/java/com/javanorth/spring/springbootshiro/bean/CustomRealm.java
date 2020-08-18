@@ -1,10 +1,7 @@
 package com.javanorth.spring.springbootshiro.bean;
 
 import com.javanorth.spring.springbootshiro.dao.UserDetailDao;
-import com.javanorth.spring.springbootshiro.dao.UserRoleDao;
 import com.javanorth.spring.springbootshiro.entity.UserDetail;
-import com.javanorth.spring.springbootshiro.exception.ExceptionEnum;
-import com.javanorth.spring.springbootshiro.exception.UserNotExistException;
 import com.javanorth.spring.springbootshiro.util.LogUtil;
 import com.javanorth.spring.springbootshiro.util.SpringUtils;
 import org.apache.shiro.authc.*;
@@ -17,7 +14,6 @@ import org.apache.shiro.util.ByteSource;
 public class CustomRealm extends AuthorizingRealm {
 
     private UserDetailDao userDetailDao = SpringUtils.getBean(UserDetailDao.class);
-    private UserRoleDao userRoleDao = SpringUtils.getBean(UserRoleDao.class);
 
 
     /**
@@ -44,11 +40,15 @@ public class CustomRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         // get username
         String user = String.valueOf(principalCollection.getPrimaryPrincipal());
+        assert user != null;
         // query user roles
         UserDetail userDetail = userDetailDao.selectUserDetailByUsername(user);
         LogUtil.info(CustomRealm.class, "user info: {}", userDetail.toString());
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        simpleAuthorizationInfo.addRoles(userRoleDao.selectUserRoleByUid(userDetail.getUid()));
+        // check roles
+        simpleAuthorizationInfo.addRoles(userDetailDao.selectUserRoleByUid(userDetail.getUid()));
+        // check permission
+        simpleAuthorizationInfo.addStringPermissions(userDetailDao.selectUserPermissionByUic(userDetail.getUid()));
         return simpleAuthorizationInfo;
     }
 

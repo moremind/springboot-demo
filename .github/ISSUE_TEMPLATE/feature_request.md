@@ -2,15 +2,18 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: help wanted
+labels: Enhancement
 assignees: ''
 
 ---
 
-**整合方案**
-your suggest.
+**项目名称**
+e.g. springboot-mybatis
 
-** 整合意见**
+**项目文件名**
+e.g. UserDetailServiceImpl.java...
+
+**修改方案**
 your suggest.
 
 **目标**

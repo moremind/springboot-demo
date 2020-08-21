@@ -2,10 +2,16 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: hot bug
-assignees: ''
+labels: Hot Bug
+assignees: hirCodd
 
 ---
+
+**项目名称**
+e.g. springboot-mybatis
+
+**项目文件名**
+e.g. UserDetailServiceImpl.java...
 
 **问题描述**
 A clear and concise description of what the bug is.

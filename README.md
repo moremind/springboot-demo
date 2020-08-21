@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/-netty-orange">
     <img src="https://img.shields.io/badge/-rabbitmq-orange">
     <img src="https://img.shields.io/badge/-redis-orange">
-    <img src="https://img.shields.io/badge/-securtity-orange">
+    <img src="https://img.shields.io/badge/-security-orange">
     <img src="https://img.shields.io/badge/-shiro-orange">
     <img src="https://img.shields.io/badge/-swagger-orange">
     <img src="https://img.shields.io/badge/-websocket_serverendpoint-orange">

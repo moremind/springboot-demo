@@ -5,7 +5,9 @@
     <img src="https://img.shields.io/badge/Springboot-2.x-brightgreen">
     <img src="https://img.shields.io/badge/MySQL--Server-8.0.15-orange"><br>
     <img src="https://img.shields.io/badge/-druid-orange">
+    <img src="https://img.shields.io/badge/-japidocs-orange">
     <img src="https://img.shields.io/badge/-jpa-orange">
+    <img src="https://img.shields.io/badge/-kafka-orange">
     <img src="https://img.shields.io/badge/-elasticsearch-orange">
     <img src="https://img.shields.io/badge/-log4j2-orange">
     <img src="https://img.shields.io/badge/-logback-orange">
@@ -40,7 +42,9 @@
 * **springboot-druid**: springboot整合druid数据源实现数据库监控
 * **springboot-elasticsearch** : sprinboot整合elasticsearch
 * **springboot-init**: springboot初始化mybatis/logback/分包打包
+* **springboot-japidocs**: springboot整合japidocs实现生成接口文档
 * **springboot-jpa**: springboot整合jpa实现简单的jpa接口
+* **springboot-kafka**: springboot整合kafka消息中间件实现消息推送
 * **springboot-logging**: 
     * **springboot-log4j2**: springboot整合log4j2
     * **springboot-logback**: springboot整合logback

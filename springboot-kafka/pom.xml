@@ -6,7 +6,7 @@
     <artifactId>springbootkafka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-kafka</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Kafka Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -32,6 +32,11 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
         </dependency>
 
         <dependency>

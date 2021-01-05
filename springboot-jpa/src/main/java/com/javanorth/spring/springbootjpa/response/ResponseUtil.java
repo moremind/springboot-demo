@@ -120,14 +120,14 @@ public class ResponseUtil<T> {
     }
 
     public static ResponseUtil success(String path) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+        return new Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_SUCCESS.getMsg())
                 .build();
     }
 
     public static ResponseUtil success(String path, Object data) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+        return new Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_SUCCESS.getMsg())
                 .data(data)
@@ -135,14 +135,14 @@ public class ResponseUtil<T> {
     }
 
     public static ResponseUtil success(String code, String msg, String path) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .build();
     }
 
     public static ResponseUtil success(String code, String msg, String path, Object data) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .data(data)
@@ -156,7 +156,7 @@ public class ResponseUtil<T> {
      * @return 响应状态
      */
     public static ResponseUtil success(String path, Object... data) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+        return new Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_SUCCESS.getMsg())
                 .data(data)
@@ -171,7 +171,7 @@ public class ResponseUtil<T> {
      * @return 响应状态
      */
     public static ResponseUtil success(String code, String msg, String path, Object... data) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .data(data)
@@ -179,14 +179,14 @@ public class ResponseUtil<T> {
     }
 
     public static ResponseUtil fail(String path) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+        return new Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_SUCCESS.getMsg())
                 .build();
     }
 
     public static ResponseUtil fail(String path, Object data) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
+        return new Builder().code(ResponseResult.REQUEST_SUCCESS.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_SUCCESS.getMsg())
                 .data(data)
@@ -194,14 +194,14 @@ public class ResponseUtil<T> {
     }
 
     public static ResponseUtil fail(String code, String msg, String path) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .build();
     }
 
     public static ResponseUtil fail(String code, String msg, String path, Object data) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .data(data)
@@ -215,7 +215,7 @@ public class ResponseUtil<T> {
      * @return 响应状态
      */
     public static ResponseUtil error(String path, Object... data) {
-        return new ResponseUtil.Builder().code(ResponseResult.REQUEST_FAILED.getCode())
+        return new Builder().code(ResponseResult.REQUEST_FAILED.getCode())
                 .path(path)
                 .message(ResponseResult.REQUEST_FAILED.getMsg())
                 .data(data)
@@ -231,7 +231,7 @@ public class ResponseUtil<T> {
      * @return 响应状态
      */
     public static ResponseUtil error(String code, String msg, String path, Object... data) {
-        return new ResponseUtil.Builder().code(code)
+        return new Builder().code(code)
                 .path(path)
                 .message(msg)
                 .data(data)

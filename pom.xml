@@ -45,6 +45,8 @@
         <module>springboot-mail</module>
         <!-- springboot-druid example -->
         <module>springboot-druid</module>
+        <module>springboot-japidocs</module>
+        <module>springboot-kafka</module>
         <!-- springboot-shiro example -->
         <module>springboot-shiro</module>
         <!-- springboot-elasticsearch example -->

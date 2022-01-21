@@ -2,17 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.javanorth.spring.springbootshiro.dao.UserDetailDao">
+<mapper namespace="cn.moremind.spring.springbootshiro.dao.UserDetailDao">
 
     <!-- UserDetail selectUserDetailByUsername(String username); -->
-    <select id="selectUserDetailByUsername" resultType="com.javanorth.spring.springbootshiro.entity.UserDetail">
+    <select id="selectUserDetailByUsername" resultType="cn.moremind.spring.springbootshiro.entity.UserDetail">
         SELECT uid, username, password, salt
         FROM tb_user
         WHERE username= #{username, jdbcType=VARCHAR}
     </select>
 
     <!-- boolean insertIntoUserDetail(UserDetail userDetail); -->
-    <insert id="insertIntoUserDetail" parameterType="com.javanorth.spring.springbootshiro.entity.UserDetail">
+    <insert id="insertIntoUserDetail" parameterType="cn.moremind.spring.springbootshiro.entity.UserDetail">
         insert into tb_user(uid, username, password, salt)
         values (#{uid, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR},
         #{salt, jdbcType=VARCHAR})

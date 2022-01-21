@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.javanorth.spring.springbootsecurity.dao.UserRoleDao">
+<mapper namespace="cn.moremind.spring.springbootsecurity.dao.UserRoleDao">
 
     <!--List<Role> selectRolesByUserId(String uid);-->
-    <select id="selectRolesByUserId" resultType="com.javanorth.spring.springbootsecurity.entity.Role">
+    <select id="selectRolesByUserId" resultType="cn.moremind.spring.springbootsecurity.entity.Role">
         select A.id, A.name
         from tb_role as A
         left join tb_user_role as B

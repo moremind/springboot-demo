@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.javanorth.spring.springbootsecurity.dao.UserDetailDao">
+<mapper namespace="cn.moremind.spring.springbootsecurity.dao.UserDetailDao">
 
     <!--UserDetail selectUserByUsername(String username);-->
-    <select id="selectUserByUsername" resultType="com.javanorth.spring.springbootsecurity.entity.UserDetail">
+    <select id="selectUserByUsername" resultType="cn.moremind.spring.springbootsecurity.entity.UserDetail">
         select uid, username, password
         from tb_user
         where username = #{username, jdbcType=VARCHAR}

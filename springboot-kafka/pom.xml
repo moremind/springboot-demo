@@ -109,7 +109,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.0.RELEASE</version>
                 <configuration>
-                    <mainClass>com.javanorth.spring.springbootkafka.SpringbootKafkaApplication</mainClass>
+                    <mainClass>cn.moremind.spring.springbootkafka.SpringbootKafkaApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

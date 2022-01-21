@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.javanorth.spring.springbootmultidatasource.dao.primary.PrimaryDao">
+<mapper namespace="cn.moremind.spring.springbootmultidatasource.dao.primary.PrimaryDao">
 
     <!--boolean insert(Person person);-->
-    <insert id="insert" parameterType="com.javanorth.spring.springbootmultidatasource.entity.Person">
+    <insert id="insert" parameterType="cn.moremind.spring.springbootmultidatasource.entity.Person">
         insert into person(card_number, name, age)
         values (#{cardNumber, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER})
     </insert>
